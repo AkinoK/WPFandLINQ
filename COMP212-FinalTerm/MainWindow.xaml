@@ -1,0 +1,102 @@
+﻿<Window x:Class="COMP229_FinalTerm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:COMP229_FinalTerm"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="450"
+        Width="800">
+    <Grid>
+        <Button x:Name="btnLoadFile"
+                Content="Load File"
+                HorizontalAlignment="Left"
+                Margin="12,20,0,0"
+                VerticalAlignment="Top"
+                Click="btnLoadFile_Click"
+                Width="107" />
+        <Label x:Name="lblTemp"
+               Content="File loaded:"
+               HorizontalAlignment="Left"
+               Margin="126,16,0,0"
+               VerticalAlignment="Top" />
+        <TextBox x:Name="txtFileLoaded"
+                 Margin="195,22,12,0"
+                 TextWrapping="Wrap"
+                 Text="No file loaded"
+                 VerticalAlignment="Top"
+                 IsEnabled="False"
+                 Background="#FFECE7E7"
+                 MaxLines="1"
+                 VerticalScrollBarVisibility="Auto"
+                 HorizontalScrollBarVisibility="Auto" />
+        <Button x:Name="btnInsertData"
+                Content="Populate Database"
+                HorizontalAlignment="Left"
+                Margin="12,52,0,0"
+                VerticalAlignment="Top"
+                Width="108"
+                Click="btnInsertData_Click" />
+        <ProgressBar x:Name="pbInsertDb"
+                     Height="19"
+                     Margin="135,53,12,0"
+                     VerticalAlignment="Top"
+                     Cursor=""
+                     Value="-1" />
+        <TextBlock x:Name="txtBar"
+                   Text="{Binding ElementName=pbInsertDb, Path=Value, StringFormat={}{0:0}%}"
+                   Margin="135,53,12,0"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center" />
+        <DataGrid x:Name="dgCases"
+                  d:ItemsSource="{Binding}"
+                  Margin="12,115,12,12"
+                  ColumnWidth="*">
+            <!--<DataGrid.Columns>
+                <DataGridTextColumn  Binding="{Binding Path=CasesReportId}"></DataGridTextColumn>
+                <DataGridTextColumn  Binding="{Binding Path=date}"></DataGridTextColumn>
+                <DataGridTextColumn  Binding="{Binding Path=amount}"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=ProvinceName}"></DataGridTextColumn>
+
+            </DataGrid.Columns>-->
+        </DataGrid>
+        <Button x:Name="btnLoadCountries"
+                Content="Load Countries"
+                HorizontalAlignment="Left"
+                Margin="12,84,0,0"
+                VerticalAlignment="Top"
+                Width="108"
+                Click="btnLoadCountries_Click" />
+        <ComboBox x:Name="cbCountries"
+                  HorizontalAlignment="Left"
+                  Margin="186,84,0,0"
+                  VerticalAlignment="Top"
+                  Width="120"
+                  DropDownClosed="cbCountries_DropDownClosed" />
+        <Label Content="Country:"
+               HorizontalAlignment="Left"
+               Margin="132,81,0,0"
+               VerticalAlignment="Top" />
+        <ComboBox x:Name="cbProvinces"
+                  HorizontalAlignment="Left"
+                  Margin="384,84,0,0"
+                  VerticalAlignment="Top"
+                  Width="120"
+                  DropDownClosed="cbProvinces_DropDownClosed" />
+                 <!--DisplayMemberPath="ProvinceName"-->
+            
+                  
+        <Label Content="Province:"
+               HorizontalAlignment="Left"
+               Margin="327,81,0,0"
+               VerticalAlignment="Top" />
+        <CheckBox x:Name="cbGroupResult"
+                  Content="Group Province Data by Year/Month"
+                  HorizontalAlignment="Left"
+                  Margin="556,86,0,0"
+                  VerticalAlignment="Top"
+                  Checked="cbGroupResult_Checked" />
+        
+    </Grid>
+</Window>
