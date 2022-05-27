@@ -45,7 +45,7 @@ namespace COMP229_FinalTerm
             // ADD YOUR CODE HERE
             // ==================
             // Q1.5
-            //_dbContext.Database.EnsureCreated();
+            _dbContext.Database.EnsureCreated();
 
             // ================== 
         }
@@ -316,7 +316,26 @@ namespace COMP229_FinalTerm
                     // ADD YOUR CODE HERE
                     // ==================
                     // Q3.5 
+                    // The method cbGroupResult_Checked is invoked when the user checks the CheckBox
+                    // cbGroupResult.Populate the datagrid dgCases with the sum of the cases per month/ year of the
+                    // province selected by showing: Year, Month, and Total. (3 mark)
+                    // a.Hint 1: Using LINQ you can use GroupBy to group by date.
+                    // b.Hint 2: when grouping, create an anonymous object with Year and Month from date.
+                    // c.Hint 3: In the select, create an anonymous object with Year, Month, and Total.
 
+                    var _ProvinceName = cbProvinces.SelectedItem;
+
+                    var query = from c in _dbContext.CasesReports
+                                where _ProvinceName == c.Province.ProvinceName
+                                group c by new { year = c.date.Year, month = c.date.Month } into d
+                                select new
+                                {
+                                    year = d.Key.year,
+                                    month = d.Key.month,
+                                    total = d.Count()
+                                };
+                    var results = query.ToList();
+                    dgCases.ItemsSource = results;
 
                     // ==================
                 }
